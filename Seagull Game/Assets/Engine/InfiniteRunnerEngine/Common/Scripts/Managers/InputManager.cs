@@ -78,11 +78,11 @@ namespace MoreMountains.InfiniteRunnerEngine
 	                LevelManager.Instance.GameOverAction();
 	                return;
 	            }
-	            if (GameManager.Instance.Status == GameManager.GameStatus.LifeLost)
+	            /*if (GameManager.Instance.Status == GameManager.GameStatus.LifeLost)
 	            {
 	                LevelManager.Instance.LifeLostAction();
 	                return;
-	            }
+	            }*/
 	        }
 	        for (int i = 0; i < LevelManager.Instance.CurrentPlayableCharacters.Count; ++i)
 	        {
@@ -127,11 +127,11 @@ namespace MoreMountains.InfiniteRunnerEngine
 	                LevelManager.Instance.GameOverAction();
 	                return;
 	            }
-	            if (GameManager.Instance.Status == GameManager.GameStatus.LifeLost)
+	            /*if (GameManager.Instance.Status == GameManager.GameStatus.LifeLost)
 	            {
 	                LevelManager.Instance.LifeLostAction();
 	                return;
-	            }
+	            }*/
 	        }
 
 			for (int i = 0; i < LevelManager.Instance.CurrentPlayableCharacters.Count; ++i)

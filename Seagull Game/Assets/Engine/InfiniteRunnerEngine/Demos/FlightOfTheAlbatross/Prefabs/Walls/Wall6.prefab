@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2347066}
   - component: {fileID: 11441792}
   - component: {fileID: 11483010}
-  - component: {fileID: 6556154}
   - component: {fileID: 11408064}
   - component: {fileID: 114363753583180916}
+  - component: {fileID: -709751034485003473}
   m_Layer: 0
   m_Name: Wall6
   m_TagString: Untagged
@@ -118,19 +118,6 @@ MonoBehaviour:
   Direction: {x: 0, y: 0, z: -5}
   DirectionCanBeChangedBySpawner: 1
   MovementSpace: 0
---- !u!65 &6556154
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194478}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.8, y: 6, z: 20.58}
-  m_Center: {x: 0.09701252, y: 0, z: 1.4947529}
 --- !u!114 &11408064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,3 +144,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoundsBasedOn: 0
   LifeTime: 0
+--- !u!64 &-709751034485003473
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 598ce9c9389c27042907d3c1d1ee75e6, type: 3}
