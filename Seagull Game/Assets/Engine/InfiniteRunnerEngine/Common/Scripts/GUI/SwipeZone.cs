@@ -13,16 +13,18 @@ namespace MoreMountains.InfiniteRunnerEngine
 			switch (_swipeDirection)
 			{
 				case MMPossibleSwipeDirections.Down:
-					InputManager.Instance.DownButtonDown();
-					break;
+                    //InputManager.Instance.DownButtonDown();
+                    InputManager.Instance.RightButtonDown();
+                    break;
 				case MMPossibleSwipeDirections.Up:
-					InputManager.Instance.UpButtonDown();
-					break;
+                    //InputManager.Instance.UpButtonDown();
+                    InputManager.Instance.LeftButtonDown();
+                    break;
 				case MMPossibleSwipeDirections.Left:
-					InputManager.Instance.LeftButtonDown();
+					//InputManager.Instance.LeftButtonDown();
 					break;
 				case MMPossibleSwipeDirections.Right:
-					InputManager.Instance.RightButtonDown();
+					//InputManager.Instance.RightButtonDown();
 					break;
 			}
 		}

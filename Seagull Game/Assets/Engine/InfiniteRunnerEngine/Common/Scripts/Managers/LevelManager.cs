@@ -76,7 +76,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 	    /// the mobile control scheme applied to this level
 	    public Controls ControlScheme;
 
-	    [Space(10)]
+        [Space(10)]
 	    [Header("Life Lost")]
 	    /// the effect we instantiate when a life is lost
 	    public GameObject LifeLostExplosion;
@@ -475,13 +475,27 @@ namespace MoreMountains.InfiniteRunnerEngine
 	        GameManager.Instance.SetPoints(_savedPoints);
 	        GameManager.Instance.LoseLives(1);
 
-	        if (GameManager.Instance.CurrentLives<=0)
+			//Neville - If Player died once and still have lives, Level Manager will instantiate the PlayableCharacter
+            if (GameManager.Instance.CurrentLives > 0 && GameManager.Instance.Status == GameManager.GameStatus.LifeLost)
+            {
+				StartCoroutine(CountDownSpawn());
+                return;
+            }
+
+            if (GameManager.Instance.CurrentLives<=0)
 			{
 	            GUIManager.Instance.SetGameOverScreen(true);
 	            GameManager.Instance.SetStatus(GameManager.GameStatus.GameOver);
 				MMEventManager.TriggerEvent(new MMGameEvent("GameOver"));
 	        }
 	    }
+
+		//Neville - To spawn the Playable Character after 1 second
+		IEnumerator CountDownSpawn()
+		{
+			yield return new WaitForSeconds(1);
+            LevelManager.Instance.LifeLostAction();
+        }
 
 	    /// <summary>
 	    /// Override this if needed
