@@ -462,6 +462,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 		protected virtual void AllCharactersAreDead()
 		{
 	        // if we've specified an effect for when a life is lost, we instantiate it at the camera's position
+			// Neville - Instantiate explosion effect futher from the camera
 	        if (LifeLostExplosion != null)
 	        {
 	            GameObject explosion = Instantiate(LifeLostExplosion);
