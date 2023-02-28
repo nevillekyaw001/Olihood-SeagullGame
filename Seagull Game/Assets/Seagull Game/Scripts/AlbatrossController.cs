@@ -16,7 +16,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 		/// the frequency at which the albatross completes a low/high/low cycle
 		protected float Frequency=2f;
 
-		protected Vector3 _originalPosition;
+        protected Vector3 _originalPosition;
 		protected float _randomVariation;
 
 		/// <summary>

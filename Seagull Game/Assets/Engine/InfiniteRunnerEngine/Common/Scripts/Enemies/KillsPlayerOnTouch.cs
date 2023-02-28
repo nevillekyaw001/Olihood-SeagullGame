@@ -44,9 +44,12 @@ namespace MoreMountains.InfiniteRunnerEngine
 			if (player == null)
 			{
 				return;
-			}	
-			
-			if (player.Invincible)
+			}
+            if (player.godMode)
+            {
+                return;
+            }
+            if (player.Invincible)
 			{
 				return;
 			}

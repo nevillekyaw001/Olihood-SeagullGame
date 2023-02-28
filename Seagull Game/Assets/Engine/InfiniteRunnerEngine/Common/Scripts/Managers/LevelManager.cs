@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using MoreMountains.Tools;
+using UnityEngine.TextCore.Text;
 
 namespace MoreMountains.InfiniteRunnerEngine
 {	
@@ -27,6 +28,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 		public List<PlayableCharacter> PlayableCharacters;
 		/// the list of playable characters currently instantiated in the game - use this to know what characters ARE currently in your level at runtime
 		public List<PlayableCharacter> CurrentPlayableCharacters { get; set; }
+		BoxCollider seagullBC;
 		/// the x distance between each character
 		public float DistanceBetweenCharacters = 1f;
 		/// the elapsed time since the start of the level
@@ -80,16 +82,21 @@ namespace MoreMountains.InfiniteRunnerEngine
 	    [Header("Life Lost")]
 	    /// the effect we instantiate when a life is lost
 	    public GameObject LifeLostExplosion;
+		public GameObject SpeedBonusEffect;
 
 	    // protected stuff
 	    protected DateTime _started;
 		protected float _savedPoints;	
 		protected float _recycleX;
 		protected Bounds _tmpRecycleBounds;
+		
+		//Neville
+		PlayableCharacter myCharacter;
 
-		protected bool _temporarySpeedFactorActive;
+
+        protected bool _temporarySpeedFactorActive;
 		protected float _temporarySpeedFactor;
-		protected float _temporarySpeedFactorRemainingTime;
+        protected float _temporarySpeedFactorRemainingTime;
 		protected float _temporarySavedSpeed;
 			
 		/// <summary>
@@ -100,12 +107,13 @@ namespace MoreMountains.InfiniteRunnerEngine
 	        Speed = InitialSpeed;
 	        DistanceTraveled = 0;
 
-	        InstantiateCharacters();
+            InstantiateCharacters();
 
 	        ManageControlScheme();
 
-	        // storage
-	        _savedPoints =GameManager.Instance.Points;
+			seagullBC = CurrentPlayableCharacters[0].GetComponent<BoxCollider>();
+            // storage
+            _savedPoints =GameManager.Instance.Points;
 			_started = DateTime.UtcNow;
 	        GameManager.Instance.SetStatus(GameManager.GameStatus.BeforeGameStart);
 	        GameManager.Instance.SetPointsPerSecond(PointsPerSecond);
@@ -188,6 +196,9 @@ namespace MoreMountains.InfiniteRunnerEngine
 			CurrentPlayableCharacters = new List<PlayableCharacter>();
             /// we go through the list of playable characters and instantiate them while adding them to the list we'll use from any class to access the
             /// currently playable characters
+
+            myCharacter = PlayableCharacters[0];
+            ///Neville - create playable character for Power-Up
 
             // we check if there's a stored character in the game manager we should instantiate
             if (CharacterSelectorManager.Instance.StoredCharacter != null)
@@ -283,7 +294,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 				Speed += SpeedAcceleration * Time.deltaTime;
 			}
 
-			HandleSpeedFactor ();
+			HandleSpeedFactor();
 
 			RunningTime+=Time.deltaTime;
 		}
@@ -311,19 +322,33 @@ namespace MoreMountains.InfiniteRunnerEngine
 		/// </summary>
 		/// <param name="factor">The number of times you want to increase/decrease the speed by.</param>
 		/// <param name="duration">The duration of the speed change, in seconds.</param>
-		public virtual void TemporarilyMultiplySpeed(float factor, float duration)
+		public virtual void TemporarilyMultiplySpeed(float factor, float duration, Vector3 cameraShake)
 		{
-			_temporarySpeedFactor = factor;
+            
+            _temporarySpeedFactor = factor;
 			_temporarySpeedFactorRemainingTime = duration;
 
-			if (!_temporarySpeedFactorActive)
+
+            if (!_temporarySpeedFactorActive)
 			{
 				_temporarySavedSpeed = Speed;
 			}
 
 			Speed = _temporarySavedSpeed * _temporarySpeedFactor;
 			_temporarySpeedFactorActive = true;
-		}
+
+            if (Camera.main.GetComponent<CameraBehavior>() != null)
+            {
+                Camera.main.GetComponent<CameraBehavior>().Shake(cameraShake);
+				Camera.main.fieldOfView = 140;
+            }
+
+            StartCoroutine(CountGodMode());
+
+            
+
+
+        }
 
 		/// <summary>
 		/// Called every frame, this modified the current level speed if we're under the effect of a speed factor
@@ -335,12 +360,14 @@ namespace MoreMountains.InfiniteRunnerEngine
 				if (_temporarySpeedFactorRemainingTime <= 0)
 				{
 					_temporarySpeedFactorActive = false;
-					Speed = _temporarySavedSpeed;
+
+                    Speed = _temporarySavedSpeed;
 				}
 				else
 				{
 					_temporarySpeedFactorRemainingTime -= Time.deltaTime;
-				}
+
+                }
 			}
 		}
 
@@ -466,7 +493,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 	        if (LifeLostExplosion != null)
 	        {
 	            GameObject explosion = Instantiate(LifeLostExplosion);
-	            explosion.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y,0) ;
+	            explosion.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 8) ;
 	        }
 
 	        // we've just lost a life
@@ -498,10 +525,31 @@ namespace MoreMountains.InfiniteRunnerEngine
             LevelManager.Instance.LifeLostAction();
         }
 
-	    /// <summary>
-	    /// Override this if needed
-	    /// </summary>
-	    protected virtual void OnEnable()
+        IEnumerator CountGodMode()
+        {
+			seagullBC.enabled = false;
+			SpeedBonusEffect.SetActive(true);
+            float elapsedTime = 0f;
+            while (elapsedTime < 5)
+            {
+                Camera.main.fieldOfView = Mathf.Lerp(145, 110, elapsedTime / 5);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+            SpeedBonusEffect.SetActive(false);
+            yield return new WaitForSeconds(1);
+            seagullBC.enabled = true;
+            
+            //CurrentPlayableCharacters[0].godMode = false;
+        }
+
+
+        /// <summary>
+        /// Override this if needed
+        /// </summary>
+        protected virtual void OnEnable()
 	    {
 
 	    }

@@ -28,8 +28,13 @@ namespace MoreMountains.InfiniteRunnerEngine
 		/// </summary>
 		/// <param name="other">the Collider that collides with our object</param>
 	    protected virtual void OnTriggerEnter (Collider other)
-		{		
+		{
+			if(other.gameObject.tag != "Player")
+			{
+				return;
+			}
 			TriggerEnter (other.gameObject);
+			
 		}	
 		
 		/// <summary>

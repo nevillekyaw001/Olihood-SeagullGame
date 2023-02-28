@@ -11,14 +11,15 @@ namespace MoreMountains.InfiniteRunnerEngine
 	{
 		public float SpeedFactor=2f;
 		public float EffectDuration=5f;
-					
+		public Vector3 cameraShake;
+
 		protected override void ObjectPicked()
 		{		
 			if (LevelManager.Instance == null)
 			{
 				return;
 			}
-			LevelManager.Instance.TemporarilyMultiplySpeed(SpeedFactor,EffectDuration);
+			LevelManager.Instance.TemporarilyMultiplySpeed(SpeedFactor, EffectDuration, cameraShake);
 		}		
 	}
 }

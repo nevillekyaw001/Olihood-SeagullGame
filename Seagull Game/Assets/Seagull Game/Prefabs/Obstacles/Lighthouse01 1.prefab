@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 481006}
   - component: {fileID: 11462912}
   - component: {fileID: 11477582}
+  - component: {fileID: 11435614}
   - component: {fileID: 114158164241662170}
-  - component: {fileID: 930300738689189457}
-  - component: {fileID: 8450789245499154220}
-  - component: {fileID: 1802542641545833259}
+  - component: {fileID: 7462241104091251684}
   m_Layer: 0
-  m_Name: Rock04
+  m_Name: Lighthouse01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,15 +28,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100516}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1497227334580192595}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11462912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +67,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyDistanceBehindBounds: 5
+--- !u!114 &11435614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bce0a8dd118a14bb804c28e9b44bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114158164241662170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,20 +93,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoundsBasedOn: 0
   LifeTime: 0
---- !u!114 &930300738689189457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0bce0a8dd118a14bb804c28e9b44bd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &8450789245499154220
-BoxCollider:
+--- !u!136 &7462241104091251684
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -104,22 +103,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 27.643446, y: 102.04176, z: 42.587894}
-  m_Center: {x: -43.541565, y: 40.25676, z: -1.2505875}
---- !u!65 &1802542641545833259
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100516}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 40.14453, y: 101.59283, z: 48.10282}
-  m_Center: {x: 50.65683, y: 40.02374, z: -0.1996193}
+  m_Radius: 8.2362175
+  m_Height: 60.94
+  m_Direction: 1
+  m_Center: {x: -0.508404, y: 17.58, z: 0}
 --- !u!1001 &1390909875153085112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,7 +142,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a7b4a55ec6271a542bbc907227b5ee14,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.4
+      value: -4.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a7b4a55ec6271a542bbc907227b5ee14,
         type: 3}
@@ -204,26 +191,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: a7b4a55ec6271a542bbc907227b5ee14,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a7b4a55ec6271a542bbc907227b5ee14,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -3522955778539423533, guid: 808658960d2ff4741ae1db06de646657,
+      objectReference: {fileID: -2813467912831258332, guid: e5bba668902a70140aa7fe8a654c08ba,
         type: 3}
     - target: {fileID: -7511558181221131132, guid: a7b4a55ec6271a542bbc907227b5ee14,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 808658960d2ff4741ae1db06de646657,
+      objectReference: {fileID: -6478536213147159724, guid: e5bba668902a70140aa7fe8a654c08ba,
+        type: 3}
+    - target: {fileID: -7511558181221131132, guid: a7b4a55ec6271a542bbc907227b5ee14,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 3511325375820423461, guid: e5bba668902a70140aa7fe8a654c08ba,
         type: 3}
     - target: {fileID: -5754084199372789682, guid: a7b4a55ec6271a542bbc907227b5ee14,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 8433346452538467594, guid: 808658960d2ff4741ae1db06de646657,
+      objectReference: {fileID: 3406610679806498513, guid: e5bba668902a70140aa7fe8a654c08ba,
         type: 3}
     - target: {fileID: 919132149155446097, guid: a7b4a55ec6271a542bbc907227b5ee14,
         type: 3}
       propertyPath: m_Name
-      value: Rock04
+      value: Lighthouse01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7b4a55ec6271a542bbc907227b5ee14, type: 3}
@@ -233,21 +231,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1390909875153085112}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2273448066366840809 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a7b4a55ec6271a542bbc907227b5ee14,
-    type: 3}
-  m_PrefabInstance: {fileID: 1390909875153085112}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5708792873657340196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2273448066366840809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0bce0a8dd118a14bb804c28e9b44bd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

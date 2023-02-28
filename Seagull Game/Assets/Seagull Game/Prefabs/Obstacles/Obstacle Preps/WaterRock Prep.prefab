@@ -9,13 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 481006}
-  - component: {fileID: 6599776}
   - component: {fileID: 11462912}
   - component: {fileID: 11477582}
-  - component: {fileID: 11435614}
   - component: {fileID: 114158164241662170}
   m_Layer: 0
-  m_Name: WaterRock1 1
+  m_Name: WaterRock Prep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,19 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6599776
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100516}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 38.431797, y: 20, z: 27.913815}
-  m_Center: {x: 0.9444752, y: 0, z: -6.88986}
 --- !u!114 &11462912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,18 +65,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyDistanceBehindBounds: 5
---- !u!114 &11435614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0bce0a8dd118a14bb804c28e9b44bd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114158164241662170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72de0b0360096ea41a18d17864ecb963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundsBasedOn: 0
+  BoundsBasedOn: 3
   LifeTime: 0
 --- !u!1 &3481174282993281035
 GameObject:

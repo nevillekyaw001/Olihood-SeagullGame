@@ -16,7 +16,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 		// if true, the object will try to go back to its starting position
 		public bool ShouldResetPosition = true;
 		// the speed at which the object should try to go back to its starting position
-		public float ResetPositionSpeed = 0.5f;	
+		public float ResetPositionSpeed = 0.5f;
 		/// the distance between the character and the ground
 		public float DistanceToTheGround {get;protected set;}
 		/// the distance tolerance at which a character is considered grounded
@@ -24,6 +24,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 		/// the duration (in seconds) of invincibility on spawn
 		public float InitialInvincibilityDuration = 3f;
 
+		public bool godMode = false;
 		public bool Invincible => (Time.time - _awakeAt < InitialInvincibilityDuration);
 		
 		protected Vector3 _initialPosition;
@@ -88,7 +89,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 	        ResetPosition();
 
 	        // we check if the player is out of the death bounds or not
-			CheckDeathConditions ();
+			CheckDeathConditions();
 
 			// we determine the distance between the ground and the Jumper
 			ComputeDistanceToTheGround();
@@ -271,7 +272,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 	    public virtual void Die()
 		{
 			Destroy(gameObject);
-		}
+        }
 
 		/// <summary>
 		/// Disables the collisions.

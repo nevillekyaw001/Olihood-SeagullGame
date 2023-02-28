@@ -8,7 +8,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 	/// <summary>
 	/// The scenario script for the Flight of the Albatross demo scene
 	/// </summary>
-	public class AlbatrossScenario : ScenarioManager 
+	public class AlbatrossScenario : ScenarioManager
 	{
 		/// the rock spawner from the scene
 		public DistanceSpawner RocksSpawner;
