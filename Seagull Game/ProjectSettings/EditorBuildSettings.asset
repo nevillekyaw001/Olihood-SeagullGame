@@ -36,10 +36,10 @@ EditorBuildSettings:
     path: Assets/Engine/InfiniteRunnerEngine/Demos/FlappyCloud/FlappyCloud.unity
     guid: 1ffaddc690283474a83febc2404be66e
   - enabled: 1
-    path: Assets/Engine/InfiniteRunnerEngine/Demos/SkyTheory/SkyTheory.unity
+    path: Assets/Seagull Game/Scenes/SkyTheory.unity
     guid: f8da5ff5a1c2d43d5b2f215cc341e5bc
   - enabled: 1
-    path: Assets/Engine/InfiniteRunnerEngine/Demos/FlightOfTheAlbatross/FlightOfTheAlbatross.unity
+    path: Assets/Seagull Game/Scenes/Sample - Original.unity
     guid: dff888a9ccbeb0a40b2babb9de1662e1
   - enabled: 1
     path: Assets/Engine/InfiniteRunnerEngine/Demos/Vertical/Vertical.unity
