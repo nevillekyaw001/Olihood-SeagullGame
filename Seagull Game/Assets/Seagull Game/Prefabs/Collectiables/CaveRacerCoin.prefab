@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 11413692}
   - component: {fileID: 114285182627368826}
   - component: {fileID: 114720419293058024}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CaveRacerCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

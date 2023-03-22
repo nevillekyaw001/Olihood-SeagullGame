@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Magnet : PickableObject
 {
-    public float EffectDuration = 5f;
+    public float effectDuration = 15f;
+    public float magnetRange = 20f;
 
     protected override void ObjectPicked()
     {
@@ -13,6 +14,6 @@ public class Magnet : PickableObject
         {
             return;
         }
-        LevelManager.Instance.TemporarilyAttractCoin(EffectDuration);
+        LevelManager.Instance.TemporarilyAttractCoin(magnetRange, effectDuration);
     }
 }

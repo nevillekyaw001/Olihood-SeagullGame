@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 11477582}
   - component: {fileID: 114158164241662170}
   m_Layer: 0
-  m_Name: Rock Prep
+  m_Name: Rock Prop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

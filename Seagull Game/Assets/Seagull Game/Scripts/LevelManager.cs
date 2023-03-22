@@ -17,9 +17,10 @@ namespace MoreMountains.InfiniteRunnerEngine
 		public enum Controls { SingleButton, LeftRight, Swipe }
 
 	    /// The current speed the level is traveling at
-	    public float Speed { get; protected set; }	
-		/// The distance traveled since the start of the level
-		public float DistanceTraveled { get; protected set; }
+	    public float Speed { get; protected set; }
+        public float magnetStrength { get; protected set; }
+        /// The distance traveled since the start of the level
+        public float DistanceTraveled { get; protected set; }
 
 		/// the prefab you want for your player
 		[Header("Prefabs")]
@@ -82,10 +83,15 @@ namespace MoreMountains.InfiniteRunnerEngine
 	    [Header("Life Lost")]
 	    /// the effect we instantiate when a life is lost
 	    public GameObject LifeLostExplosion;
-		public GameObject SpeedBonusEffect;
 
-	    // protected stuff
-	    protected DateTime _started;
+		// power-up effects control - Neville
+		public GameObject SpeedBonusEffect;
+		public GameObject magnetEffect;
+        public LayerMask collectibleLayer;
+		Transform seagullTranform;
+
+        // protected stuff
+        protected DateTime _started;
 		protected float _savedPoints;	
 		protected float _recycleX;
 		protected Bounds _tmpRecycleBounds;
@@ -98,6 +104,13 @@ namespace MoreMountains.InfiniteRunnerEngine
 		protected float _temporarySpeedFactor;
         protected float _temporarySpeedFactorRemainingTime;
 		protected float _temporarySavedSpeed;
+
+        protected bool isMagnetActive;
+        protected const float _temporaryMagnetStrength = 30f;
+        protected float _temporaryMagnetRemainingTime;
+		protected float _temporaryMagnetRange;
+
+
 			
 		/// <summary>
 		/// Initialization
@@ -112,6 +125,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 	        ManageControlScheme();
 
 			seagullBC = CurrentPlayableCharacters[0].GetComponent<BoxCollider>();
+            seagullTranform = CurrentPlayableCharacters[0].GetComponent<Transform>();
             // storage
             _savedPoints =GameManager.Instance.Points;
 			_started = DateTime.UtcNow;
@@ -282,7 +296,8 @@ namespace MoreMountains.InfiniteRunnerEngine
 	    /// </summary>
 	    public virtual void Update()
 		{
-			_savedPoints = GameManager.Instance.Points;
+            
+            _savedPoints = GameManager.Instance.Points;
 			_started = DateTime.UtcNow;
 
 			// we increment the total distance traveled so far
@@ -295,6 +310,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 			}
 
 			HandleSpeedFactor();
+			HandleMagnetFactor();
 
 			RunningTime+=Time.deltaTime;
 		}
@@ -367,9 +383,51 @@ namespace MoreMountains.InfiniteRunnerEngine
 			}
 		}
 
-        public virtual void TemporarilyAttractCoin(float durations)
+        public virtual void TemporarilyAttractCoin(float range, float durations)
         {
+            _temporaryMagnetRange = range;
+            _temporaryMagnetRemainingTime = durations;
 
+			if(!isMagnetActive)
+			{
+                _temporaryMagnetRange = 0;
+			}
+
+			isMagnetActive= true;
+            // Check for nearby collectible objects
+            
+
+        }
+
+        protected virtual void HandleMagnetFactor()
+        {
+			if (isMagnetActive)
+			{
+                if (_temporaryMagnetRemainingTime <= 0)
+                {
+                    isMagnetActive = false;
+
+                    magnetStrength = 0;
+                }
+                else
+                {
+                    _temporaryMagnetRemainingTime -= Time.deltaTime;
+					
+
+                    Collider[] coins = Physics.OverlapSphere(seagullTranform.position, 100, collectibleLayer);
+                    foreach (Collider coin in coins)
+                    {
+                        Vector3 small = new Vector3(3, 3, 3);
+                        // Attract collectible to player
+                        coin.transform.position = Vector3.Lerp(coin.transform.position, seagullTranform.position, Time.deltaTime * 45);
+						coin.transform.localScale = Vector3.Lerp(coin.transform.localScale, small, Time.deltaTime * 40);
+                    }
+
+                    Debug.Log(seagullTranform.position);
+
+                }
+            }
+            
         }
 
         /// <summary>
@@ -531,9 +589,9 @@ namespace MoreMountains.InfiniteRunnerEngine
 			seagullBC.enabled = false;
 			SpeedBonusEffect.SetActive(true);
             float elapsedTime = 0f;
-            while (elapsedTime < 5)
+            while (elapsedTime < _temporarySpeedFactorRemainingTime)
             {
-                Camera.main.fieldOfView = Mathf.Lerp(145, 110, elapsedTime / 5);
+                Camera.main.fieldOfView = Mathf.Lerp(145, 110, elapsedTime / _temporarySpeedFactorRemainingTime);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
@@ -544,6 +602,13 @@ namespace MoreMountains.InfiniteRunnerEngine
             seagullBC.enabled = true;
             
             //CurrentPlayableCharacters[0].godMode = false;
+        }
+
+		IEnumerator CountMagnet()
+		{
+			magnetEffect.SetActive(true);
+			yield return new WaitForSeconds(_temporaryMagnetRemainingTime);
+            magnetEffect.SetActive(false);
         }
 
 

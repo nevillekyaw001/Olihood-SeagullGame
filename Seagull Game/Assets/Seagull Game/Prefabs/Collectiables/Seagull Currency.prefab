@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 5877663925206573396}
   - component: {fileID: 5766769121054670330}
   - component: {fileID: 5059176057236671572}
-  m_Layer: 0
+  - component: {fileID: 1666485655791090788}
+  m_Layer: 13
   m_Name: Seagull Currency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,8 +142,21 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5877663925217895022}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.49726096
+  m_Radius: 0.65
   m_Center: {x: 0, y: -0.0054630935, z: 0}
+--- !u!114 &1666485655791090788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5877663925217895022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ca885510b067a438f5ab258079a6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShouldReactivate: 1

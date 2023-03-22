@@ -258,8 +258,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.4, y: 1.3, z: 2.31}
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Size: {x: 6.4, y: 8.082619, z: 2.31}
+  m_Center: {x: 0, y: 0.07279968, z: 0}
 --- !u!54 &5467014
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -292,6 +292,8 @@ MonoBehaviour:
   ShouldResetPosition: 1
   ResetPositionSpeed: 0.1
   GroundDistanceTolerance: 0.05
+  InitialInvincibilityDuration: 3
+  godMode: 0
   MovementAxis: 0
   MoveSpeed: 500
   MovementInertia: 1
