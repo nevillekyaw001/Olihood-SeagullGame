@@ -80,6 +80,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 		protected virtual void AddScoreEvent(float startScore, Action action, string eventName = "")
 		{
 			_scenario.Add(new ScenarioEvent(startScore,0f,action,eventName,ScenarioEvent.ScenarioEventTypes.ScoreBased));
+			Debug.Log("Event Updates");
 		}
 
 		/// <summary>

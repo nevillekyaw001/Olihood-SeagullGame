@@ -394,6 +394,7 @@ namespace MoreMountains.InfiniteRunnerEngine
 			}
 
 			isMagnetActive= true;
+			StartCoroutine(CountMagnet());
             // Check for nearby collectible objects
             
 
@@ -586,12 +587,13 @@ namespace MoreMountains.InfiniteRunnerEngine
 
         IEnumerator CountGodMode()
         {
-			seagullBC.enabled = false;
-			SpeedBonusEffect.SetActive(true);
+            seagullBC.enabled = false;
+
+            SpeedBonusEffect.SetActive(true);
             float elapsedTime = 0f;
             while (elapsedTime < _temporarySpeedFactorRemainingTime)
             {
-                Camera.main.fieldOfView = Mathf.Lerp(145, 110, elapsedTime / _temporarySpeedFactorRemainingTime);
+                Camera.main.fieldOfView = Mathf.Lerp(150, 110, elapsedTime / _temporarySpeedFactorRemainingTime);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }

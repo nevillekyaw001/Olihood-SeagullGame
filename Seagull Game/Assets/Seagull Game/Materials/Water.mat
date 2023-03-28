@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WaterTexture:
-        m_Texture: {fileID: 2800000, guid: 22f08140f559f404dbfb6760a6b384f7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 863f80db4b458214f98aa86e6a280e83, type: 3}
         m_Scale: {x: 20, y: 10}
         m_Offset: {x: 0, y: 0}
     - _WaveTexture:
